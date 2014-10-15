@@ -1,0 +1,7 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ _('页面不存在') }}</h1>
+<p><a href="{{url_for('index')}}">{{ _('版本') }}</a></p>
+{% endblock %}

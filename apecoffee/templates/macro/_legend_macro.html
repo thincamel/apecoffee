@@ -1,0 +1,55 @@
+{% macro text(context, show=True) -%}
+{% if show == True %}
+{{_(context)}}
+{% endif %}
+{%- endmacro %}
+
+{% macro status_icon(status, show=False) -%}
+{% if status == 1 %}
+{# STATUS_PLAN #}
+<i class="small circular inverted red icon frown"></i>{{text("待制作",show)}}
+{% elif status == 2 %}
+{# STATUS_BUILT #}
+<i class="small circular inverted green icon smile"></i>{{text("已制作",show)}}
+{% elif status == 3 %}
+{# STATUS_REBUILT #}
+<i class="small circular inverted red icon question"></i>{{text("其他",show)}}
+{% else %}
+{{status}}
+{% endif %}
+{%- endmacro %}
+
+
+{% macro type_icon(type, show=False) -%}
+{% if type == 1 %}
+{# TYPE_PUBLISH #}
+<i class="small circular inverted green basic icon direction"></i>{{text("对外发布",show)}}
+{% elif type == 2 %}
+{# TYPE_INNER #}
+<i class="small circular inverted blue icon basic direction"></i>{{text("对内发布",show)}}
+{% elif type == 3 %}
+{# TYPE_TEST #}
+<i class="small circular inverted red icon basic direction"></i>{{text("测试版本",show)}}
+{% elif type == 4 %}
+{# TYPE_CLOSED #}
+<i class="small circular inverted red icon basic question"></i>{{text("其他",show)}}
+{% else %}
+{{type}}
+{% endif %}
+{%- endmacro %}
+
+
+{% macro bit_icon(bittype, show=False) -%}
+{% if bittype == 1 %}
+{# BIT_32 #}
+<i class="small circular inverted green icon empty star"></i>{{text("32",show)}}
+{% elif bittype == 2 %}
+{# BIT_64 #}
+<i class="small circular inverted green icon star"></i>{{text("64",show)}}
+{% elif bittype == 3 %}
+{# BIT_ALL #}
+<i class="small circular inverted green icon half empty star"></i>{{text("32&64",show)}}
+{% else %}
+{{bit}}
+{% endif %}
+{%- endmacro %}

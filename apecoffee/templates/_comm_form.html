@@ -1,0 +1,61 @@
+{{ form.hidden_tag() }}
+<div class="two fields">
+    <div class="field">
+        <label>{{_('版本号')}}</label>
+        {{ form.version(maxlength=64, placeholder=_('版本号') ) }}
+        {% for error in form.errors.version %}
+        <div class="ui red pointing above ui label">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div class="field">
+        <label>{{_('制作日期')}}</label>
+        {{ form.date(placeholder=_('制作日期') ) }}
+        {% for error in form.errors.date %}
+        <div class="ui red pointing above ui label">{{ error }}</div>
+        {% endfor %}
+    </div>
+</div>
+<div class="three fields">
+    <div class="field">
+        <label>{{_('状态')}}</label>
+        {{ form.status(class_="ui selection dropdown") }}
+        {% for error in form.errors.status %}
+        <div class="ui red pointing above ui label">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div class="field">
+        <label>{{_('类型')}}</label>
+        {{ form.type(class_="ui selection dropdown") }}
+        {% for error in form.errors.type %}
+        <div class="ui red pointing above ui label">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div class="field">
+        <label>{{_('32/64')}}</label>
+        {{ form.bit(class_="ui selection dropdown") }}
+        {% for error in form.errors.bit %}
+        <div class="ui red pointing above ui label">{{ error }}</div>
+        {% endfor %}
+    </div>
+</div>
+<div class="field">
+    <label>{{_('描述') }}</label>
+    {{ form.desc(maxlength=4000, placeholder=_('描述') ) }}
+    {% for error in form.errors.desc %}
+    <div class="ui red pointing above ui label">{{ error }}</div>
+    {% endfor %}
+</div>
+<div class="field">
+    <label>{{_('合入需求')}}</label>
+    {{ form.func(maxlength=8000, placeholder=_('合入需求') ) }}
+    {% for error in form.errors.func %}
+    <div class="ui red pointing above ui label">{{ error }}</div>
+    {% endfor %}
+</div>
+<div class="field">
+    <label>{{_('补丁')}}</label>
+    {{ form.patch(maxlength=9000, placeholder=_('补丁') ) }}
+    {% for error in form.errors.patch %}
+    <div class="ui red pointing above ui label">{{ error }}</div>
+    {% endfor %}
+</div>

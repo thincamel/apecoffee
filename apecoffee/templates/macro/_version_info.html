@@ -1,0 +1,40 @@
+{% from 'macro/_legend_macro.html' import status_icon, type_icon, bit_icon %}
+{% macro version_info(version) -%}
+<div>
+    <h5>{{_('描述')}}</h5>
+    {{version.desc}}
+</div>
+<div>
+    <h5>{{_('合入需求')}}</h5>
+    {{version.func}}
+</div>
+<div>
+    <h5>{{_('补丁信息')}}</h5>
+    {{version.patch}}
+</div>
+{%- endmacro %}
+{% macro version_item(version) -%}
+<tr>
+    <td>{{version.version}}</td>
+    <td>{{version.date}}</td>
+    <td>{{status_icon(version.status, True)}}</td>
+    <td>{{type_icon(version.type, True)}}</td>
+    <td>{{bit_icon(version.bit, True)}}</td>
+    <td>
+        <a href="{{ url_for('comm_edit', id= version.id) }}">
+            <i class="small circular inverted link teal icon hover edit"
+               data-content="{{_('修改')}}" data-position="top center"></i>
+        </a>
+        <a href="{{ url_for('comm_delete', id=version.id) }}">
+            <i class="small circular inverted link red icon hover delete"
+               data-content="{{_('删除')}}" data-position="top center"></i>
+        </a>
+        <a href="{{ url_for('used', version=version.version) }}">
+            <i class="small circular inverted link green icon hover users"
+               data-content="{{_('查看使用情况')}}" data-position="top center"></i>
+        </a>
+        <i class="small circular inverted link purple icon click info" data-title="{{_('版本信息')}}"
+           data-content="{{version_info(version)}}" data-position="left center"></i>
+    </td>
+</tr>
+{%- endmacro %}

@@ -1,0 +1,7 @@
+{% macro search_input(id,name,url,info) -%}
+<div class="ui fluid icon input">
+    <input id='{{id}}' name="{{name}}" type="text" placeholder="{{info}}"
+           data-url="{{url}}">
+    <i class="search link icon" id="search"></i>
+</div>
+{%- endmacro %}

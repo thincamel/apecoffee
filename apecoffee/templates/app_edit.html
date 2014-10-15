@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<script src="{{ url_for('static', filename = 'ckeditor/ckeditor.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/action.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/WYSIWYG.js') }}"></script>
+{% endblock %}
+{% block content %}
+
+<div class="example"><i class="icon table"></i>
+    <h4 class="ui header">{{ _('新建应用版本') }}</h4>
+
+    <form action="{{ url_for('app_edit', id= id) }}" method="POST"
+          name="form">
+        <div class="ui  form segment">
+            {% include '_app_form.html'%}
+            <button class="ui right blue submit button" type="submit" style="float: right">
+                <i class="edit icon"></i>{{ _('修改') }}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

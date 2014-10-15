@@ -1,0 +1,48 @@
+{% from "macro/_error.html" import append_error %}
+{% extends "_base.html" %}
+{% block _ibase %}
+<div class="example" style="margin: 7% auto">
+    <div class="ui three middle aligned column grid" style="display: block;">
+        <div class="column"></div>
+        <div class="column">
+            <form class="security_form" action="{{ url_for_security('login') }}" method="POST"
+                  name="login_user_form">
+                {{ login_user_form.hidden_tag() }}
+                <div class="ui fluid form segment">
+                    <h3 class="ui header">{{_('登录')}}</h3>
+                    {% if login_user_form.errors.email or login_user_form.errors.password %}
+                    <div class="ui red ribbon label">{{ _('邮箱或密码错误') }}</div>
+                    {% endif %}
+                    <div class="{% if login_user_form.errors.email or login_user_form.errors.password %} error {% endif %} field">
+                        <label>{{_('邮箱')}}</label>
+                        {# <input placeholder="Email" id="email" name="email" type="text"> #}
+                        {{ login_user_form.email(placeholder='Email') }}
+                    </div>
+                    <div class="{% if login_user_form.errors.email or login_user_form.errors.password %} error {% endif %} field">
+                        <label>{{_('密码')}}</label>
+                        {# <input type="password" id="password" name="password"> #}
+                        {{ login_user_form.password() }}
+                    </div>
+                    <div class="inline field">
+                        <div class="ui checkbox">
+                            {# <input type="checkbox" id="remember" name="remember"> #}
+                            {{ login_user_form.remember() }}
+                            <label for="remember">{{_('记住我')}}</label>
+                        </div>
+                    </div>
+                    <div class="ui buttons" style="float: right">
+                        <button type="submit" class="ui blue submit button">
+                            {{ _('登录') }}
+                        </button>
+                        <div class="or"></div>
+                        <a href="{{ url_for_security('register') }}" class="ui red submit button">
+                            {{_('注册')}}
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="column"></div>
+    </div>
+</div>
+{% endblock %}

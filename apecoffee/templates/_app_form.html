@@ -1,0 +1,51 @@
+{{ form.hidden_tag() }}
+<div class="two fields">
+    <div class="field">
+        <label>{{_('版本号')}}</label>
+        {{ form.version(maxlength=64,placeholder=_('版本号') ) }}
+        {% for error in form.errors.version %}
+        <div class="ui red pointing above ui label">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div class="field">
+        <label>{{_('制作日期')}}</label>
+        {{ form.date(placeholder=_('制作日期') ) }}
+        {% for error in form.errors.date %}
+        <div class="ui red pointing above ui label">{{ error }}</div>
+        {% endfor %}
+    </div>
+</div>
+<div class="three fields">
+    <div class="field">
+        <label>{{_('COMM版本')}}</label>
+
+        <div class="ui-widget">
+            {{ form.comm(class_="ui selection dropdown", id_="combobox") }}
+            {% for error in form.errors.comm %}
+            <div class="ui red pointing above ui label">{{ error }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="field">
+        <label>{{_('状态')}}</label>
+        {{ form.status(class_="ui selection dropdown") }}
+        {% for error in form.errors.status %}
+        <div class="ui red pointing above ui label">{{ error }}</div>
+        {% endfor %}
+    </div>
+    <div class="field">
+        <label>{{_('类型')}}</label>
+        {{ form.type(class_="ui selection dropdown") }}
+        {% for error in form.errors.type %}
+        <div class="ui red pointing above ui label">{{ error }}</div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="field">
+    <label>{{_('描述') }}</label>
+    {{ form.desc(maxlength=4000, placeholder=_('描述:运营商、地点、时间') ) }}
+    {% for error in form.errors.desc %}
+    <div class="ui red pointing above ui label">{{ error }}</div>
+    {% endfor %}
+</div>

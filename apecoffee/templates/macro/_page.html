@@ -1,0 +1,21 @@
+{% macro page(versions) -%}
+{% if versions.has_prev %}
+<a class="icon item" href="{{url_for('index', type=type, version=version, page = versions.prev_num)}}">
+    <i class="icon left arrow"></i>
+</a>
+{% else %}
+<a class="icon disabled item">
+    <i class="icon left arrow"></i>
+</a>
+{% endif %}
+{% if versions.has_next %}
+
+<a class="icon item" href="{{url_for('index', type=type, version=version, page = versions.next_num)}}">
+    <i class="icon right arrow"></i>
+</a>
+{% else %}
+<a class="icon disabled item">
+    <i class="icon right arrow"></i>
+</a>
+{% endif %}
+{%- endmacro %}

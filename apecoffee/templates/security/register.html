@@ -1,0 +1,55 @@
+{% from "macro/_error.html" import append_error %}
+{% extends "_base.html" %}
+{% block _ibase %}
+<div class="example" style="margin: 7% auto">
+    <div class="ui three middle aligned column grid" style="display: block;">
+        <div class="column"></div>
+        <div class="column">
+            <form class="security_form" action="{{ url_for_security('register') }}" method="POST"
+                  name="register_user_form">
+                {{ register_user_form.hidden_tag() }}
+                <div class="ui fluid form segment">
+                    <h3 class="ui header">{{_('注册')}}</h3>
+
+                    <div class="field">
+                        <label>{{_('邮箱')}}</label>
+                        {{ register_user_form.email(placeholder='Email') }}
+                        {{ append_error(register_user_form.errors.email) }}
+                    </div>
+                    <div class="field">
+                        <label>{{_('密码')}}</label>
+                        {{ register_user_form.password() }}
+                        {{ append_error(register_user_form.errors.password) }}
+                    </div>
+                    {% if register_user_form.password_confirm %}
+                    <div class="field">
+                        <label>{{_('重复密码')}}</label>
+                        {{ register_user_form.password_confirm() }}
+                        {{ append_error(register_user_form.errors.password_confirm) }}
+                    </div>
+                    {% endif %}
+                    {#
+                    <div class="inline field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" id="terms">
+                            <label for="terms">{{_('同意？')}}</label>
+                        </div>
+                    </div>
+                    #}
+                    <div class="ui buttons" style="float: right">
+                        <a href="{{ url_for_security('login') }}" class="ui red submit button">
+                            {{_('登录')}}
+                        </a>
+
+                        <div class="or"></div>
+                        <button type="submit" class="ui blue submit button">
+                            {{ _('注册') }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="column"></div>
+    </div>
+</div>
+{% endblock %}

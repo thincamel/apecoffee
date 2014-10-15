@@ -1,0 +1,17 @@
+{% extends "_base.html" %}
+{% block _ibase %}
+<div class="main container ">
+    <div class="sticky-wrapper stuck" style="height: 132px;">
+        <div class="peek">
+            <div class="ui vertical pointing secondary menu">
+                <a class="item {% if  active == 1 %} {{ 'active' }} {% endif %}"
+                   href="{{url_for('index')}}">{{ _('版本') }}</a>
+                <a class="item {% if active == 2 %} {{ 'active' }} {% endif %}"
+                   href="{{url_for('used')}}">{{ _('使用情况') }}</a>
+            </div>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+</div>
+{% endblock %}

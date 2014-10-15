@@ -1,0 +1,5 @@
+{% macro append_error(errors) -%}
+{% for error in errors %}
+<div class="ui red pointing above ui label">{{ error }}</div>
+{% endfor %}
+{%- endmacro %}

@@ -1,0 +1,22 @@
+{% from 'macro/_legend_macro.html' import status_icon, type_icon, bit_icon  %}
+{% macro version_item(version) -%}
+<tr>
+    <td>{{version.version}}</td>
+    <td>{{version.comm_version.version}}</td>
+    <td>{{version.date}}</td>
+    <td>{{status_icon(version.status, True)}}</td>
+    <td>{{type_icon(version.type, True)}}</td>
+    <td>
+        <a href="{{ url_for('app_edit', id=version.id) }}">
+            <i class="small circular inverted link teal icon hover edit"
+               data-content="{{_('修改')}}" data-position="top center"></i>
+        </a>
+        <a href="{{ url_for('app_delete', id=version.id) }}">
+            <i class="small circular inverted link red icon hover delete"
+               data-content="{{_('删除')}}" data-position="top center"></i>
+        </a>
+        <i class="small circular inverted link purple icon click info" data-title="{{_('版本信息')}}"
+           data-content="{{version.desc}}" data-position="left center"></i>
+    </td>
+</tr>
+{%- endmacro %}

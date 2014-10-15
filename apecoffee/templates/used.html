@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
+<script src="{{ url_for('static', filename = 'js/jquery.tablesort.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/action.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/comm.js') }}"></script>
+{% endblock %}
+{% block content %}
+{% from 'macro/_app_page.html' import page %}
+{% from 'macro/_search_input.html' import search_input %}
+{% from 'macro/_app_version_info.html' import version_item %}
+<div class="example"><i class="icon table"></i>
+    <h4 class="ui header">
+        {% if search %}
+        "{{search}}"{{ _('查询结果') }}
+        {% else %}
+        {{ _('使用情况') }}
+        {% endif %}
+    </h4>
+    <div class="ui pointing menu">
+        <div class="item">
+            <a href="{{ url_for('app_new')}}">
+                <i class="small circular inverted link red icon hover add"
+                   data-content="{{_('增加')}}" data-position="top center"></i>
+            </a>
+        </div>
+        <div class="item">
+            {{search_input('input-search', 'search', '/used?search=', _('COMM/应用版本号、描述、日期') )}}
+        </div>
+        <div class="ui pagination menu">
+            {% if versions %}
+            {{ page(versions) }}
+            {% endif %}
+        </div>
+    </div>
+    <table class="ui small celled sortable table segment" style="display: table;">
+        <thead>
+        <tr>
+            <th>{{ _('应用版本号') }}</th>
+            <th>{{ _('COMM版本号') }}</th>
+            <th>{{ _('制作日期') }}</th>
+            <th>{{ _('状态') }}</th>
+            <th>{{ _('类型') }}</th>
+            <th>{{ _('') }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if versions %}
+        {% for version in versions.items %}
+        {{ version_item(version) }}
+        {% endfor %}
+        {% endif %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th colspan="6">{{_("共 %(total)s 条记录，%(page)s条记录/页", total=versions.total, page= 11)}}</th>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+{% endblock %}
